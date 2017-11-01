@@ -1,0 +1,19 @@
+* FluctuNeb: emission line ratios from inhomogeneous nebulae
+
++ Analysis of emission line nebulae is often based on homogeneous models for each broad ionization zone
+  + A single density and temperature (/N, T/) is derived for each zone, usually based on a complementary pair of line ratios, such as
+    + [N II] 5755/6583 and [S II] 6716/6731 for a low-ionization zone
+    + [O III] 4363/5007 and [Ar IV] 4711/4740 for a high-ionization zone
+    + [Ar III] and [Cl III] for a mid-ionization zone
++ However, when this is done for a resolved nebula, the derived (/N, T/) are found to vary across the plane of the sky 
+  + Except for very special geometries, this implies that (/N, T/) should /also/ vary along the line of sight
+  + Perhaps even more so, since projection effects will tend to compress the plane-of-sky fluctuations ([[http://adsabs.harvard.edu/abs/2010MNRAS.405L..56B][Brunt, Federrath & Price 2010]])
+  + This is inconsistent with the homogeneous assumption
++ To do better, we need to use a distribution of (/N, T/) along the line of sight
+  + Assume a log-normal distribution of density (necessary because the fluctuations can be large), with rms fractional density fluctuations \sigma_\rho, meaning the width of the Gaussian in ln \rho is \sigma_{ln \rho} = [ln(1 + \sigma_\rho^2)]^{1/2}
+    - Maybe we could use n^2 = \sigma_\rho^2
+  + Assume a normal distribution in temperature (sufficient because the fluctuations tend to be small), with rms fractional temperature fluctuations /t/ (and yes, this means that /t^2/ is the Peimbert temperature fluctuation parameter)
+  + The n^2 and t^t fluctuations may be uncorrelated, or there may be (partial) correlation between them (discussed further later)
++ We use ~PyNeb~ to generate the ratios for each (N, T) and integrate over the PDFs
+  + Most flexible way would be Monte Carlo, but it an probably be done more efficiently
+  + For T-fluctuations it can be done analytically with Taylor series in limit of small t^2.  In fact, already done.  
